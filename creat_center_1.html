@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreeLineVerse - 创作中心</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+        
+        :root {
+            --primary-bg: #10072f;
+            --secondary-bg: #1a1040;
+            --accent-color-1: #4fcfff;
+            --accent-color-2: #8A2BE2;
+            --accent-color-3: #f85e9f;
+            --text-light: #f9d4d4;
+            --text-highlight: #36f3c4;
+            --dark-gray: #333333;
+            --medium-gray: #666666;
+            --light-gray: #aaaaaa;
+            --shadow: 0 4px 15px rgba(79, 207, 255, 0.2);
+            --glow: 0 0 8px rgba(79, 207, 255, 0.6);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto", "Microsoft YaHei", "微软雅黑", sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: rgba(26, 16, 64, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent-color-1);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            margin-right: 10px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent-color-2), var(--accent-color-1));
+            box-shadow: var(--glow);
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            margin-left: 30px;
+        }
+        
+        .main-nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+        
+        .main-nav a:hover {
+            color: var(--accent-color-1);
+        }
+        
+        .main-nav a.active {
+            color: var(--accent-color-1);
+        }
+        
+        .main-nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color-1), transparent);
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .create-btn {
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1));
+            color: var(--primary-bg);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-right: 20px;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow);
+        }
+        
+        .create-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(79, 207, 255, 0.4);
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+        
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--secondary-bg);
+            margin-right: 8px;
+            overflow: hidden;
+            border: 2px solid var(--accent-color-1);
+        }
+        
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .creation-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .creation-header h1 {
+            font-size: 36px;
+            background: linear-gradient(90deg, var(--accent-color-3), var(--accent-color-1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .creation-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color-3), var(--accent-color-1));
+            border-radius: 3px;
+        }
+        
+        .creation-header p {
+            font-size: 16px;
+            color: var(--text-highlight);
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .creation-flow {
+            background-color: var(--secondary-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(79, 207, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .creation-flow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1), var(--accent-color-3));
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+        
+        .step-indicator::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 3%; /* This represents progress - will be dynamic */
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-3));
+            z-index: 2;
+            transition: width 0.5s ease;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .step.active .step-number {
+            background: linear-gradient(135deg, var(--accent-color-2), var(--accent-color-1));
+            box-shadow: 0 0 10px rgba(79, 207, 255, 0.7);
+        }
+        
+        .step.completed .step-number {
+            background: linear-gradient(135deg, var(--accent-color-3), var(--accent-color-1));
+        }
+        
+        .step-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--light-gray);
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+        
+        .step.active .step-title {
+            color: var(--accent-color-1);
+            font-weight: bold;
+        }
+        
+        .step.completed .step-title {
+            color: var(--text-highlight);
+        }
+        
+        .step-content {
+            padding: 20px 0;
+        }
+        
+        .tutorial-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--accent-color-1);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            background-color: rgba(79, 207, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .tutorial-link i {
+            margin-right: 5px;
+            font-size: 16px;
+        }
+        
+        .tutorial-link:hover {
+            background-color: rgba(79, 207, 255, 0.2);
+            box-shadow: 0 0 5px rgba(79, 207, 255, 0.5);
+        }
+        
+        .input-section {
+            margin-bottom: 30px;
+        }
+        
+        .input-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+        }
+        
+        .input-section h3::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background: linear-gradient(to bottom, var(--accent-color-1), var(--accent-color-3));
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+        
+        .text-input {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .text-input textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            border-radius: 5px;
+            resize: vertical;
+            font-size: 16px;
+            background-color: rgba(26, 16, 64, 0.5);
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+        
+        .text-input textarea:focus {
+            outline: none;
+            border-color: var(--accent-color-1);
+            box-shadow: 0 0 5px rgba(79, 207, 255, 0.5);
+        }
+        
+        .char-count {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            font-size: 12px;
+            color: var(--light-gray);
+        }
+        
+        .example-poems {
+            margin-top: 20px;
+        }
+        
+        .example-poems h4 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: var(--text-highlight);
+        }
+        
+        .examples {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color-1) rgba(0, 0, 0, 0.2);
+        }
+        
+        .examples::-webkit-scrollbar {
+            height: 5px;
+        }
+        
+        .examples::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        
+        .examples::-webkit-scrollbar-thumb {
+            background: var(--accent-color-1);
+            border-radius: 10px;
+        }
+        
+        .example-card {
+            background-color: rgba(26, 16, 64, 0.5);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            min-width: 250px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .example-card:hover {
+            border-color: var(--accent-color-1);
+            box-shadow: 0 0 10px rgba(79, 207, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .example-card p {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+        
+        .example-card .example-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        
+        .example-card .tag {
+            background-color: rgba(79, 207, 255, 0.15);
+            color: var(--accent-color-1);
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
+        
+        .tag-selection {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .tag-category {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        
+        .tag-category h4 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: var(--text-highlight);
+        }
+        
+        .tag-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .tag-option {
+            background-color: rgba(26, 16, 64, 0.5);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            color: var(--text-light);
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .tag-option:hover {
+            background-color: rgba(79, 207, 255, 0.15);
+            border-color: var(--accent-color-1);
+        }
+        
+        .tag-option.selected {
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1));
+            color: #fff;
+            border: none;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 14px;
+        }
+        
+        .btn-back {
+            background-color: rgba(26, 16, 64, 0.5);
+            color: var(--text-light);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .btn-back:hover {
+            background-color: rgba(26, 16, 64, 0.8);
+            border-color: var(--accent-color-1);
+        }
+        
+        .btn-next {
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1));
+            color: var(--primary-bg);
+            font-weight: bold;
+            box-shadow: var(--glow);
+        }
+        
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(79, 207, 255, 0.4);
+        }
+        
+        .btn-save {
+            background-color: transparent;
+            color: var(--accent-color-1);
+            border: 1px solid var(--accent-color-1);
+            margin-right: auto;
+            margin-left: 10px;
+        }
+        
+        .btn-save:hover {
+            background-color: rgba(79, 207, 255, 0.15);
+        }
+        
+        .tutorial-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .tutorial-content {
+            background-color: var(--secondary-bg);
+            border-radius: 16px;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            box-shadow: 0 0 20px rgba(79, 207, 255, 0.3);
+        }
+        
+        .close-tutorial {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-tutorial:hover {
+            color: var(--accent-color-1);
+        }
+        
+        .tutorial-content h2 {
+            color: var(--accent-color-1);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .tutorial-content p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .tutorial-content ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        
+        .tutorial-content li {
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+        
+        .tutorial-content strong {
+            color: var(--text-highlight);
+        }
+        
+        .tutorial-images {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .tutorial-image {
+            width: calc(50% - 8px);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .tutorial-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .step-title {
+                font-size: 12px;
+            }
+            
+            .tutorial-image {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"></div>
+                ThreeLineVerse
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#" class="active">创作中心</a></li>
+                    <li><a href="#">看剧中心</a></li>
+                    <li><a href="#">榜单</a></li>
+                    <li><a href="#">教程</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <a href="#" class="user-profile">
+                    <div class="user-avatar">
+                        <img src="/api/placeholder/36/36" alt="用户头像">
+                    </div>
+                    <span>用户名</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="creation-header">
+            <h1>创作你的AI短剧</h1>
+            <p>从一段简短的"三行情诗"开始，创造属于你的故事世界</p>
+        </div>
+        
+        <div class="creation-flow">
+            <div class="step-indicator">
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <div class="step-title">情诗创意</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">剧本生成</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">角色设定</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">配音选择</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-title">分镜设计</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-title">最终剪辑</div>
+                </div>
+            </div>
+            
+            <div class="step-content">
+                <a href="#" class="tutorial-link" onclick="openTutorial()">
+                    <i>❓</i> 查看教程：如何写出打动人心的三行情诗
+                </a>
+                
+                <div class="input-section">
+                    <h3>输入你的三行情诗</h3>
+                    <div class="text-input">
+                        <textarea placeholder="在这里输入你的三行情诗，例如：我来了，你没走，只是身边没有我的位子"></textarea>
+                        <div class="char-count">0/100</div>
+                    </div>
+                    
+                    <div class="example-poems">
+                        <h4>参考示例</h4>
+                        <div class="examples">
+                            <div class="example-card">
+                                <p>我来了，你没走，只是身边没有我的位子</p>
+                                <div class="example-tags">
+                                    <span class="tag">伤感</span>
+                                    <span class="tag">都市</span>
+                                </div>
+                            </div>
+                            <div class="example-card">
+                                <p>车站送别，风吹起你的发，我终于看到了泪水</p>
+                                <div class="example-tags">
+                                    <span class="tag">离别</span>
+                                    <span class="tag">青春</span>
+                                </div>
+                            </div>
+                            <div class="example-card">
+                                <p>时光倒流，你说过的未来，我在原点等你</p>
+                                <div class="example-tags">
+                                    <span class="tag">重生</span>
+                                    <span class="tag">爱情</span>
+                                </div>
+                            </div>
+                            <div class="example-card">
+                                <p>雪夜里撒了谎，他原谅了我，却还是哭了。最终，我们三个都输了。</p>
+                                <div class="example-tags">
+                                    <span class="tag">悬疑</span>
+                                    <span class="tag">情感</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-section">
+                    <h3>选择短剧风格标签</h3>
+                    <div class="tag-selection">
+                        <div class="tag-category">
+                            <h4>题材类型</h4>
+                            <div class="tag-options">
+                                <div class="tag-option">都市</div>
+                                <div class="tag-option selected">爱情</div>
+                                <div class="tag-option">悬疑</div>
+                                <div class="tag-option">科幻</div>
+                                <div class="tag-option">校园</div>
+                                <div class="tag-option">奇幻</div>
+                                <div class="tag-option">古装</div>
+                                <div class="tag-option">职场</div>
+                                <div class="tag-option">家庭</div>
+                                <div class="tag-option">治愈</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tag-category">
+                            <h4>情感风格</h4>
+                            <div class="tag-options">
+                                <div class="tag-option">甜宠</div>
+                                <div class="tag-option">虐恋</div>
+                                <div class="tag-option selected">伤感</div>
+                                <div class="tag-option">治愈</div>
+                                <div class="tag-option">轻松</div>
+                                <div class="tag-option">搞笑</div>
+                                <div class="tag-option">热血</div>
+                                <div class="tag-option">冷酷</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tag-category">
+                            <h4>剧情元素</h4>
+                            <div class="tag-options">
+                                <div class="tag-option">重生</div>
+                                <div class="tag-option">穿越</div>
+                                <div class="tag-option">双向暗恋</div>
+                                <div class="tag-option">霸总</div>
+                                <div class="tag-option">娱乐圈</div>
+                                <div class="tag-option">青梅竹马</div>
+                                <div class="tag-option">契约恋爱</div>
+                                <div class="tag-option">误会</div>
+                                <div class="tag-option selected">三角关系</div>
+                                <div class="tag-option">欢喜冤家</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tag-category">
+                            <h4>视觉风格</h4>
+                            <div class="tag-options">
+                                <div class="tag-option selected">现实写实</div>
+                                <div class="tag-option">动画</div>
+                                <div class="tag-option">赛博朋克</div>
+                                <div class="tag-option">水彩画</div>
+                                <div class="tag-option">复古</div>
+                                <div class="tag-option">未来风</div>
+                                <div class="tag-option">光影强烈</div>
+                                <div class="tag-option">梦幻仙境</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="btn btn-save">保存草稿</button>
+                    <button class="btn btn-next" onclick="window.location.href='creat_center_2.html'">下一步</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div class="tutorial-modal" id="tutorialModal">
+        <div class="tutorial-content">
+            <span class="close-tutorial" onclick="closeTutorial()">&times;</span>
+            <h2>如何写出打动人心的三行情诗</h2>
+            <p>"三行情诗"是开启AI短剧创作的第一步，它浓缩了情感与故事的核心。一段优秀的三行情诗应该：</p>
+            <ul>
+                <li><strong>简洁有力</strong>：用最少的文字，传递最强的情感冲击</li>
+                <li><strong>留白空间</strong>：不必交代所有细节，给想象留下空间</li>
+                <li><strong>情感共鸣</strong>：触发读者的情感共鸣，引起心灵震动</li>
+                <li><strong>画面感</strong>：文字能让人浮现画面，有情境感</li>
+            </ul>
+            <p>写作技巧：</p>
+            <ul>
+                <li>可以使用对比手法，如"过去与现在"、"理想与现实"的对比</li>
+                <li>可以设置悬念或转折，在第三行出现意料之外的变化</li>
+                <li>可以借助意象，如"风雨"、"落叶"、"月光"等</li>
+                <li>避免过于直白的表达，适当的含蓄更能引人深思</li>
+            </ul>
+            <div class="tutorial-images">
+                <div class="tutorial-image">
+                    <img src="images/tutorial_1.jpg" alt="教程图片1">
+                </div>
+                <div class="tutorial-image">
+                    <img src="images/tutorial_2.jpg" alt="教程图片2">
+                </div>
+            </div>
+            <p>成功案例分析：</p>
+            <p><strong>"我来了，你没走，只是身边没有我的位子"</strong></p>
+            <p>这句话传达了一种无形的疏离和被排除在外的感受。第一句"我来了"表示主动靠近，第二句"你没走"看似是积极的，但第三句转折"只是身边没有我的位子"揭示了残酷的现实 - 即使物理上接近，心理上的距离却无法跨越。</p>
+            <p>准备好创作你自己的三行情诗了吗？回到创作页面，让灵感流动吧！</p>
+        </div>
+    </div>
+    
+    <script>
+        function openTutorial() {
+            document.getElementById('tutorialModal').style.display = 'flex';
+        }
+        
+        function closeTutorial() {
+            document.getElementById('tutorialModal').style.display = 'none';
+        }
+        
+        // 标签选择功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const tagOptions = document.querySelectorAll('.tag-option');
+            
+            tagOptions.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    // 如果是同一类别下的标签，取消其他已选的标签
+                    const parent = this.parentElement;
+                    const siblings = parent.querySelectorAll('.tag-option');
+                    
+                    // 检查是否已经被选中
+                    if (this.classList.contains('selected')) {
+                        this.classList.remove('selected');
+                    } else {
+                        // 取消同一类别的其他选择
+                        siblings.forEach(sib => {
+                            // 允许多选或单选，这里使用单选逻辑
+                            sib.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+                    }
+                });
+            });
+            
+            // 字符计数功能
+            const textarea = document.querySelector('textarea');
+            const charCount = document.querySelector('.char-count');
+            
+            textarea.addEventListener('input', function() {
+                const count = this.value.length;
+                charCount.textContent = `${count}/100`;
+                
+                // 超出字数限制时的处理
+                if (count > 100) {
+                    charCount.style.color = '#f85e9f';
+                } else {
+                    charCount.style.color = 'var(--light-gray)';
+                }
+            });
+            
+            // 示例卡片点击功能
+            const exampleCards = document.querySelectorAll('.example-card');
+            
+            exampleCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const exampleText = this.querySelector('p').textContent;
+                    textarea.value = exampleText;
+                    // 手动触发input事件以更新字符计数
+                    textarea.dispatchEvent(new Event('input'));
+                });
+            });
+        });
+    </script>
+</body>
+</html>

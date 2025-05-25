@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreeLineVerse - 创作中心 - 剧本生成</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+        
+        :root {
+            --primary-bg: #10072f;
+            --secondary-bg: #1a1040;
+            --accent-color-1: #4fcfff;
+            --accent-color-2: #8A2BE2;
+            --accent-color-3: #f85e9f;
+            --text-light: #f9d4d4;
+            --text-highlight: #36f3c4;
+            --dark-gray: #333333;
+            --medium-gray: #666666;
+            --light-gray: #aaaaaa;
+            --shadow: 0 4px 15px rgba(79, 207, 255, 0.2);
+            --glow: 0 0 8px rgba(79, 207, 255, 0.6);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto", "Microsoft YaHei", "微软雅黑", sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: rgba(26, 16, 64, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent-color-1);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            margin-right: 10px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent-color-2), var(--accent-color-1));
+            box-shadow: var(--glow);
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            margin-left: 30px;
+        }
+        
+        .main-nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+        
+        .main-nav a:hover {
+            color: var(--accent-color-1);
+        }
+        
+        .main-nav a.active {
+            color: var(--accent-color-1);
+        }
+        
+        .main-nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color-1), transparent);
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .create-btn {
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1));
+            color: var(--primary-bg);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-right: 20px;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow);
+        }
+        
+        .create-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(79, 207, 255, 0.4);
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+        
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--secondary-bg);
+            margin-right: 8px;
+            overflow: hidden;
+            border: 2px solid var(--accent-color-1);
+        }
+        
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .creation-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .creation-header h1 {
+            font-size: 36px;
+            background: linear-gradient(90deg, var(--accent-color-3), var(--accent-color-1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .creation-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color-3), var(--accent-color-1));
+            border-radius: 3px;
+        }
+        
+        .creation-header p {
+            font-size: 16px;
+            color: var(--text-highlight);
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .creation-flow {
+            background-color: var(--secondary-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(79, 207, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .creation-flow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1), var(--accent-color-3));
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+        
+        .step-indicator::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 22%; /* This represents progress - updated for step 2 */
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-3));
+            z-index: 2;
+            transition: width 0.5s ease;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .step.active .step-number {
+            background: linear-gradient(135deg, var(--accent-color-2), var(--accent-color-1));
+            box-shadow: 0 0 10px rgba(79, 207, 255, 0.7);
+        }
+        
+        .step.completed .step-number {
+            background: linear-gradient(135deg, var(--accent-color-3), var(--accent-color-1));
+        }
+        
+        .step-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--light-gray);
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+        
+        .step.active .step-title {
+            color: var(--accent-color-1);
+            font-weight: bold;
+        }
+        
+        .step.completed .step-title {
+            color: var(--text-highlight);
+        }
+        
+        .step-content {
+            padding: 20px 0;
+        }
+        
+        .tutorial-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--accent-color-1);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            background-color: rgba(79, 207, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .tutorial-link i {
+            margin-right: 5px;
+            font-size: 16px;
+        }
+        
+        .tutorial-link:hover {
+            background-color: rgba(79, 207, 255, 0.2);
+            box-shadow: 0 0 5px rgba(79, 207, 255, 0.5);
+        }
+        
+        .input-section {
+            margin-bottom: 30px;
+        }
+        
+        .input-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+        }
+        
+        .input-section h3::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background: linear-gradient(to bottom, var(--accent-color-1), var(--accent-color-3));
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+        
+        .text-input {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .text-input textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            border-radius: 5px;
+            resize: vertical;
+            font-size: 16px;
+            background-color: rgba(26, 16, 64, 0.5);
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+        
+        .text-input textarea:focus {
+            outline: none;
+            border-color: var(--accent-color-1);
+            box-shadow: 0 0 5px rgba(79, 207, 255, 0.5);
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 14px;
+        }
+        
+        .btn-back {
+            background-color: rgba(26, 16, 64, 0.5);
+            color: var(--text-light);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .btn-back:hover {
+            background-color: rgba(26, 16, 64, 0.8);
+            border-color: var(--accent-color-1);
+        }
+        
+        .btn-next {
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1));
+            color: var(--primary-bg);
+            font-weight: bold;
+            box-shadow: var(--glow);
+        }
+        
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(79, 207, 255, 0.4);
+        }
+        
+        .btn-save {
+            background-color: transparent;
+            color: var(--accent-color-1);
+            border: 1px solid var(--accent-color-1);
+            margin-right: auto;
+            margin-left: 10px;
+        }
+        
+        .btn-save:hover {
+            background-color: rgba(79, 207, 255, 0.15);
+        }
+        
+        .tutorial-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .tutorial-content {
+            background-color: var(--secondary-bg);
+            border-radius: 16px;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            box-shadow: 0 0 20px rgba(79, 207, 255, 0.3);
+        }
+        
+        .close-tutorial {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-tutorial:hover {
+            color: var(--accent-color-1);
+        }
+        
+        .tutorial-content h2 {
+            color: var(--accent-color-1);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .tutorial-content p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .tutorial-content ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        
+        .tutorial-content li {
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+        
+        .tutorial-content strong {
+            color: var(--text-highlight);
+        }
+        
+        .tutorial-images {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .tutorial-image {
+            width: calc(50% - 8px);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .tutorial-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        .loading-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--secondary-bg);
+            overflow: hidden;
+            z-index: 10;
+        }
+        
+        .loading-progress {
+            height: 100%;
+            width: 30%;
+            background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-3));
+            animation: progress 2s infinite ease-in-out;
+            transform-origin: left;
+        }
+        
+        @keyframes progress {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(400%);
+            }
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .step-title {
+                font-size: 12px;
+            }
+            
+            .tutorial-image {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"></div>
+                ThreeLineVerse
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#" class="active">创作中心</a></li>
+                    <li><a href="#">看剧中心</a></li>
+                    <li><a href="#">榜单</a></li>
+                    <li><a href="#">教程</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <a href="#" class="user-profile">
+                    <div class="user-avatar">
+                        <img src="https://picsum.photos/36/36" alt="用户头像" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2236%22%20height%3D%2236%22%20viewBox%3D%220%200%2036%2036%22%3E%3Ccircle%20fill%3D%22%23444%22%20cx%3D%2218%22%20cy%3D%2218%22%20r%3D%2218%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M18%2021a7%207%200%201%200-7-7%207%207%200%200%200%207%207zm0%204c-4.67%200-14%202.33-14%207v3h28v-3c0-4.67-9.33-7-14-7z%22%2F%3E%3C%2Fsvg%3E'">
+                    </div>
+                    <span>用户名</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="creation-header">
+            <h1>创作你的AI短剧</h1>
+            <p>从一段简短的"三行情诗"开始，创造属于你的故事世界</p>
+        </div>
+        
+        <div class="creation-flow">
+            <div class="step-indicator">
+                <div class="step completed">
+                    <div class="step-number">1</div>
+                    <div class="step-title">情诗创意</div>
+                </div>
+                <div class="step active">
+                    <div class="step-number">2</div>
+                    <div class="step-title">剧本生成</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">角色设定</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">配音选择</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-title">分镜设计</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-title">最终剪辑</div>
+                </div>
+            </div>
+            
+            <div class="step-content">
+                <a href="#" class="tutorial-link" onclick="openTutorial()">
+                    <i>❓</i> 查看教程：如何优化AI生成的剧本
+                </a>
+                
+                <div class="input-section">
+                    <h3>AI生成的剧本</h3>
+                    <div class="text-input">
+                        <div class="loading-indicator">
+                            <div class="loading-progress"></div>
+                        </div>
+                        <textarea style="min-height: 250px;" placeholder="AI正在根据您的三行情诗生成剧本..." readonly>《错位爱情》是一部以“AI × 三行情诗”为灵感驱动的微剧系列，每集将围绕一首三行情诗展开，探索时间、情感与错位的可能性。整个系列围绕你首次输入的三行情诗“我来了，你没走，只是身边没有我的位子”生成，讲述了一段无法同步的爱情轨迹。
+
+主线围绕顾辰与林然，两人曾在学生时代短暂交会，分离多年后各自走上不同轨道。再相逢时，时空未曾改变，他们却早已不是彼时模样。每一集都是一次情感的回环，一次迟到的回应，一次永远差一步的靠近。
+
+📍第一集《咖啡馆重逢》剧本
+
+灵感来源三行情诗：
+“我来了，你没走，
+只是身边没有我的位子。”
+
+傍晚时分，老街尽头的一家小咖啡馆。夕阳斜照，橘色的余晖透过玻璃窗洒落，安静得像一段还没说出口的往事。
+
+顾辰推门而入，目光环顾四周。他没有说话，只是径直走向靠窗的那张桌子，十二年前他们常坐的位置。他落座，指尖无意识地在杯沿轻绕，像是在一圈圈地回忆什么，也像在等待什么。
+
+门再一次被推开。林然走进来，身影逆着光慢慢显现。她停顿了片刻，然后朝他走来。
+
+两人对视，片刻的沉默过后，轻轻一笑。熟悉而又生疏，就像梦境中才会重现的重逢。
+
+他们坐在一起，窗外的光影在桌面斑驳跳跃。谁也没有提起过往，气氛温和又小心翼翼。林然说着近年的趣事，顾辰听着，时而点头，时而回应，却始终低着头搅着杯中的咖啡——仿佛只要一抬头，情绪就会溢出来。
+
+终于，他开口了，语气轻得几乎要被窗外的风吹散：
+
+“我想知道，你的身边，还有没有我的位置。”
+
+林然微怔，眼神飘远，像在寻找一个可以安放答案的地方。几秒后，她低声说：
+
+“我想让你见一个人。”
+
+她的声音很轻，但这句刺痛的话语就像一颗石子，落入顾辰的杯中，泛起层层涟漪。
+
+顾辰没有回答，只是静静望着她，缓缓点了点头。
+
+镜头渐渐拉远，咖啡馆变得空旷起来。他们并肩而坐，却似隔着一道无法跨越的光影。
+
+那些没说出口的话，就这样在杯口氤氲的热气中，悄然散去。
+
+</textarea>
+                    </div>
+                </div>
+                
+                <div class="input-section">
+                    <h3>编辑剧本</h3>
+                    <div class="text-input">
+                        <textarea style="min-height: 250px;" placeholder="您可以在这里编辑AI生成的剧本..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="btn btn-save">保存草稿</button>
+                    <button class="btn btn-back" onclick="window.location.href='creat_center_1.html'">上一步</button>
+                    <button class="btn btn-next" onclick="window.location.href='creat_center_3.html'">下一步</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div class="tutorial-modal" id="tutorialModal">
+        <div class="tutorial-content">
+            <span class="close-tutorial" onclick="closeTutorial()">&times;</span>
+            <h2>如何优化AI生成的剧本</h2>
+            <div>
+                <p>AI生成的剧本是一个很好的开始，但通过以下方法可以使它更加出色：</p>
+                <ul>
+                    <li><strong>添加情感层次</strong>：丰富角色的内心世界，增加情感冲突和矛盾</li>
+                    <li><strong>优化对话</strong>：让对话更加自然，符合角色性格，避免过于直白的表达</li>
+                    <li><strong>完善场景描述</strong>：增加环境细节，提高画面感和沉浸感</li>
+                    <li><strong>增强叙事节奏</strong>：调整场景转换和情节发展，确保故事有起伏和高潮</li>
+                    <li><strong>突出主题</strong>：确保故事主题清晰，与您的三行情诗相呼应</li>
+                </ul>
+                <p>编辑技巧：</p>
+                <ul>
+                    <li>保持剧本格式一致，便于后续分镜和制作</li>
+                    <li>适当使用旁白，但不要过度依赖</li>
+                    <li>注意场景连贯性，确保情节逻辑合理</li>
+                    <li>为重要情感时刻留足空间，不必过于直白</li>
+                </ul>
+                <div class="tutorial-images">
+                    <div class="tutorial-image">
+                        <img src="https://picsum.photos/400/300?random=17" alt="教程图片1" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20fill%3D%22%23444%22%20width%3D%22400%22%20height%3D%22300%22%2F%3E%3Ctext%20fill%3D%22%23fff%22%20font-family%3D%22sans-serif%22%20font-size%3D%2220%22%20dy%3D%220.35em%22%20x%3D%22200%22%20y%3D%22150%22%20text-anchor%3D%22middle%22%3E%E6%95%99%E7%A8%8B%E5%9B%BE%E7%89%871%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    </div>
+                    <div class="tutorial-image">
+                        <img src="https://picsum.photos/400/300?random=18" alt="教程图片2" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20fill%3D%22%23444%22%20width%3D%22400%22%20height%3D%22300%22%2F%3E%3Ctext%20fill%3D%22%23fff%22%20font-family%3D%22sans-serif%22%20font-size%3D%2220%22%20dy%3D%220.35em%22%20x%3D%22200%22%20y%3D%22150%22%20text-anchor%3D%22middle%22%3E%E6%95%99%E7%A8%8B%E5%9B%BE%E7%89%872%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    </div>
+                </div>
+                <p>示例改进：</p>
+                <p><strong>原始对话</strong>：</p>
+                <p style="color: var(--light-gray);">陈默：你后悔了？<br>
+                林晓：我不知道...</p>
+                <p><strong>改进对话</strong>：</p>
+                <p style="color: var(--accent-color-1);">陈默（声音低沉，带着试探）：看着我的眼睛，林晓...你后悔了吗？<br>
+                林晓（眼神游移，手指无意识地摩挲着杯沿）：我...（长叹一口气）如果说后悔，那对你太不公平...但如果说不后悔，那对张扬又何尝公平...</p>
+                <p>这样的改动增加了对话的情感层次和表演空间，而不仅仅是简单的问答。</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openTutorial() {
+            document.getElementById('tutorialModal').style.display = 'flex';
+        }
+        
+        function closeTutorial() {
+            document.getElementById('tutorialModal').style.display = 'none';
+        }
+        
+        // 将AI生成的剧本复制到编辑框
+        document.addEventListener('DOMContentLoaded', function() {
+            const aiScript = document.querySelector('.input-section:first-of-type textarea').value;
+            document.querySelector('.input-section:nth-of-type(2) textarea').value = aiScript;
+            
+            // 移除加载指示器
+            setTimeout(function() {
+                document.querySelector('.loading-indicator').style.display = 'none';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

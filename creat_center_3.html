@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreeLineVerse - 创作中心 - 角色设定</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+        
+        :root {
+            --primary-bg: #10072f;
+            --secondary-bg: #1a1040;
+            --accent-color-1: #4fcfff;
+            --accent-color-2: #8A2BE2;
+            --accent-color-3: #f85e9f;
+            --text-light: #f9d4d4;
+            --text-highlight: #36f3c4;
+            --dark-gray: #333333;
+            --medium-gray: #666666;
+            --light-gray: #aaaaaa;
+            --shadow: 0 4px 15px rgba(79, 207, 255, 0.2);
+            --glow: 0 0 8px rgba(79, 207, 255, 0.6);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto", "Microsoft YaHei", "微软雅黑", sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: rgba(26, 16, 64, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent-color-1);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            margin-right: 10px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent-color-2), var(--accent-color-1));
+            box-shadow: var(--glow);
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            margin-left: 30px;
+        }
+        
+        .main-nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+        
+        .main-nav a:hover {
+            color: var(--accent-color-1);
+        }
+        
+        .main-nav a.active {
+            color: var(--accent-color-1);
+        }
+        
+        .main-nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color-1), transparent);
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .create-btn {
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1));
+            color: var(--primary-bg);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-right: 20px;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow);
+        }
+        
+        .create-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(79, 207, 255, 0.4);
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+        
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--secondary-bg);
+            margin-right: 8px;
+            overflow: hidden;
+            border: 2px solid var(--accent-color-1);
+        }
+        
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .creation-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .creation-header h1 {
+            font-size: 36px;
+            background: linear-gradient(90deg, var(--accent-color-3), var(--accent-color-1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .creation-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color-3), var(--accent-color-1));
+            border-radius: 3px;
+        }
+        
+        .creation-header p {
+            font-size: 16px;
+            color: var(--text-highlight);
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .creation-flow {
+            background-color: var(--secondary-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(79, 207, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .creation-flow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1), var(--accent-color-3));
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+        
+        .step-indicator::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 41%; /* This represents progress - updated for step 3 */
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-3));
+            z-index: 2;
+            transition: width 0.5s ease;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .step.active .step-number {
+            background: linear-gradient(135deg, var(--accent-color-2), var(--accent-color-1));
+            box-shadow: 0 0 10px rgba(79, 207, 255, 0.7);
+        }
+        
+        .step.completed .step-number {
+            background: linear-gradient(135deg, var(--accent-color-3), var(--accent-color-1));
+        }
+        
+        .step-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--light-gray);
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+        
+        .step.active .step-title {
+            color: var(--accent-color-1);
+            font-weight: bold;
+        }
+        
+        .step.completed .step-title {
+            color: var(--text-highlight);
+        }
+        
+        .step-content {
+            padding: 20px 0;
+        }
+        
+        .tutorial-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--accent-color-1);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            background-color: rgba(79, 207, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .tutorial-link i {
+            margin-right: 5px;
+            font-size: 16px;
+        }
+        
+        .tutorial-link:hover {
+            background-color: rgba(79, 207, 255, 0.2);
+            box-shadow: 0 0 5px rgba(79, 207, 255, 0.5);
+        }
+        
+        .input-section {
+            margin-bottom: 30px;
+        }
+        
+        .input-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+        }
+        
+        .input-section h3::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background: linear-gradient(to bottom, var(--accent-color-1), var(--accent-color-3));
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 14px;
+        }
+        
+        .btn-back {
+            background-color: rgba(26, 16, 64, 0.5);
+            color: var(--text-light);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .btn-back:hover {
+            background-color: rgba(26, 16, 64, 0.8);
+            border-color: var(--accent-color-1);
+        }
+        
+        .btn-next {
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1));
+            color: var(--primary-bg);
+            font-weight: bold;
+            box-shadow: var(--glow);
+        }
+        
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(79, 207, 255, 0.4);
+        }
+        
+        .btn-save {
+            background-color: transparent;
+            color: var(--accent-color-1);
+            border: 1px solid var(--accent-color-1);
+            margin-right: auto;
+            margin-left: 10px;
+        }
+        
+        .btn-save:hover {
+            background-color: rgba(79, 207, 255, 0.15);
+        }
+        
+        .tutorial-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .tutorial-content {
+            background-color: var(--secondary-bg);
+            border-radius: 16px;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            box-shadow: 0 0 20px rgba(79, 207, 255, 0.3);
+        }
+        
+        .close-tutorial {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-tutorial:hover {
+            color: var(--accent-color-1);
+        }
+        
+        .tutorial-content h2 {
+            color: var(--accent-color-1);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .tutorial-content p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .tutorial-content ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        
+        .tutorial-content li {
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+        
+        .tutorial-content strong {
+            color: var(--text-highlight);
+        }
+        
+        .tutorial-images {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .tutorial-image {
+            width: calc(50% - 8px);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .tutorial-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        /* 角色设计部分样式 */
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .character-card {
+            background-color: rgba(26, 16, 64, 0.5);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .character-card:hover {
+            border-color: var(--accent-color-1);
+            box-shadow: 0 0 15px rgba(79, 207, 255, 0.4);
+            transform: translateY(-5px);
+        }
+        
+        .character-card.selected {
+            border: 2px solid var(--accent-color-1);
+            box-shadow: 0 0 20px rgba(79, 207, 255, 0.6);
+        }
+        
+        .character-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background-color: var(--secondary-bg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .character-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .character-info {
+            padding: 15px;
+        }
+        
+        .character-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+        
+        .character-type {
+            font-size: 14px;
+            color: var(--text-highlight);
+        }
+        
+        .character-selected-mark {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color-2), var(--accent-color-1));
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .character-card.selected .character-selected-mark {
+            opacity: 1;
+        }
+        
+        .character-detail {
+            background-color: rgba(26, 16, 64, 0.7);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .character-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .character-header-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+            border: 2px solid var(--accent-color-1);
+        }
+        
+        .character-header-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .character-header-info h4 {
+            font-size: 20px;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+        
+        .character-header-info p {
+            font-size: 16px;
+            color: var(--text-highlight);
+        }
+        
+        .character-description {
+            margin-bottom: 20px;
+        }
+        
+        .character-description h5 {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .character-description h5::before {
+            content: '';
+            display: inline-block;
+            width: 3px;
+            height: 14px;
+            background: linear-gradient(to bottom, var(--accent-color-1), var(--accent-color-3));
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+        
+        .character-description p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .character-attributes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .character-attribute {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            padding: 10px 15px;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .character-attribute h5 {
+            font-size: 14px;
+            color: var(--text-highlight);
+            margin-bottom: 5px;
+        }
+        
+        .character-attribute p {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .character-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .character-btn {
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .character-btn-edit {
+            background-color: transparent;
+            color: var(--accent-color-1);
+            border: 1px solid var(--accent-color-1);
+        }
+        
+        .character-btn-edit:hover {
+            background-color: rgba(79, 207, 255, 0.15);
+        }
+        
+        .character-btn-custom {
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1));
+            color: var(--primary-bg);
+            border: none;
+            font-weight: bold;
+            box-shadow: var(--glow);
+        }
+        
+        .character-btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(79, 207, 255, 0.4);
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(79, 207, 255, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .tab.active {
+            color: var(--accent-color-1);
+            font-weight: bold;
+        }
+        
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color-1), transparent);
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .step-title {
+                font-size: 12px;
+            }
+            
+            .tutorial-image {
+                width: 100%;
+            }
+            
+            .character-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .character-attributes {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"></div>
+                ThreeLineVerse
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#" class="active">创作中心</a></li>
+                    <li><a href="#">看剧中心</a></li>
+                    <li><a href="#">榜单</a></li>
+                    <li><a href="#">教程</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <a href="#" class="user-profile">
+                    <div class="user-avatar">
+                        <img src="https://picsum.photos/36/36" alt="用户头像" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2236%22%20height%3D%2236%22%20viewBox%3D%220%200%2036%2036%22%3E%3Ccircle%20fill%3D%22%23444%22%20cx%3D%2218%22%20cy%3D%2218%22%20r%3D%2218%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M18%2021a7%207%200%201%200-7-7%207%207%200%200%200%207%207zm0%204c-4.67%200-14%202.33-14%207v3h28v-3c0-4.67-9.33-7-14-7z%22%2F%3E%3C%2Fsvg%3E'">
+                    </div>
+                    <span>用户名</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="creation-header">
+            <h1>创作你的AI短剧</h1>
+            <p>从一段简短的"三行情诗"开始，创造属于你的故事世界</p>
+        </div>
+        
+        <div class="creation-flow">
+            <div class="step-indicator">
+                <div class="step completed">
+                    <div class="step-number">1</div>
+                    <div class="step-title">情诗创意</div>
+                </div>
+                <div class="step completed">
+                    <div class="step-number">2</div>
+                    <div class="step-title">剧本生成</div>
+                </div>
+                <div class="step active">
+                    <div class="step-number">3</div>
+                    <div class="step-title">角色设定</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">配音选择</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-title">分镜设计</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-title">最终剪辑</div>
+                </div>
+            </div>
+            
+            <div class="step-content">
+                <a href="#" class="tutorial-link" onclick="openTutorial()">
+                    <i>❓</i> 查看教程：如何设计引人入胜的角色
+                </a>
+                
+                <div class="input-section">
+                    <h3>角色设定</h3>
+                    <p style="color: var(--text-light); margin-bottom: 15px;">选择或自定义您的故事角色</p>
+                    
+                    <div class="tabs">
+                        <div class="tab active" onclick="switchTab('ai-generated')">AI生成的角色</div>
+                        <div class="tab" onclick="switchTab('custom')">自定义角色</div>
+                    </div>
+                    
+                    <div class="character-grid">
+                        <div class="character-card selected" onclick="selectCharacter(this, '林然')">
+                            <div class="character-image">
+                                <img src="images/linran.png" alt="林然" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23444%22 width=%22200%22 height=%22200%22/%3E%3Ctext fill=%22%23fff%22 font-family=%22sans-serif%22 font-size=%2220%22 dy=%220.35em%22 x=%22100%22 y=%22100%22 text-anchor=%22middle%22%3E林晓%3C/text%3E%3C/svg%3E'">
+                                <div class="character-selected-mark">✓</div>
+                            </div>
+                            <div class="character-info">
+                                <div class="character-name">林然</div>
+                                <div class="character-type">女主角</div>
+                            </div>
+                        </div>
+                        
+                        <div class="character-card selected" onclick="selectCharacter(this, '顾辰')">
+                            <div class="character-image">
+                                <img src="images/guchen.png" alt="顾辰"onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23444%22 width=%22200%22 height=%22200%22/%3E%3Ctext fill=%22%23fff%22 font-family=%22sans-serif%22 font-size=%2220%22 dy=%220.35em%22 x=%22100%22 y=%22100%22 text-anchor=%22middle%22%3E顾辰%3C/text%3E%3C/svg%3E'">
+                                <div class="character-selected-mark">✓</div>
+                            </div>
+                            <div class="character-info">
+                                <div class="character-name">顾辰</div>
+                                <div class="character-type">男主角</div>
+                            </div>
+                        </div>
+                        
+                        <div class="character-card selected" onclick="selectCharacter(this, '沈彦')">
+                            <div class="character-image">
+                                <img src="images/shenyan.png" alt="沈彦" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22200%22%20viewBox%3D%220%200%20200%20200%22%3E%3Crect%20fill%3D%22%23444%22%20width%3D%22200%22%20height%3D%22200%22%2F%3E%3Ctext%20fill%3D%22%23fff%22%20font-family%3D%22sans-serif%22%20font-size%3D%2220%22%20dy%3D%220.35em%22%20x%3D%22100%22%20y%3D%22100%22%20text-anchor%3D%22middle%22%3E%E5%BC%A0%E6%89%AC%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                                <div class="character-selected-mark">✓</div>
+                            </div>
+                            <div class="character-info">
+                                <div class="character-name">沈彦</div>
+                                <div class="character-type">男配角</div>
+                            </div>
+                        </div>
+                        
+                        <div class="character-card" onclick="createNewCharacter()">
+                            <div class="character-image">
+                                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22200%22%20viewBox%3D%220%200%20200%20200%22%3E%3Crect%20fill%3D%22%23333%22%20width%3D%22200%22%20height%3D%22200%22%2F%3E%3Ctext%20fill%3D%22%23fff%22%20font-family%3D%22sans-serif%22%20font-size%3D%2250%22%20dy%3D%220.35em%22%20x%3D%22100%22%20y%3D%22100%22%20text-anchor%3D%22middle%22%3E%2B%3C%2Ftext%3E%3C%2Fsvg%3E" alt="添加角色">
+                            </div>
+                            <div class="character-info">
+                                <div class="character-name">添加角色</div>
+                                <div class="character-type">自定义</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="character-detail">
+                        <div class="character-header">
+                            <div class="character-header-image">
+                                <img src="images/linran_lg.png" alt="林然" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2280%22%20height%3D%2280%22%20viewBox%3D%220%200%2080%2080%22%3E%3Ccircle%20fill%3D%22%23444%22%20cx%3D%2240%22%20cy%3D%2240%22%20r%3D%2240%22%2F%3E%3Ctext%20fill%3D%22%23fff%22%20font-family%3D%22sans-serif%22%20font-size%3D%2230%22%20dy%3D%220.35em%22%20x%3D%2240%22%20y%3D%2240%22%20text-anchor%3D%22middle%22%3E%E6%9E%97%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                            </div>
+                            <div class="character-header-info">
+                                <h4>林然</h4>
+                                <p>女主角 · 29岁· 文艺书店店主 & 插画师</p>
+                            </div>
+                        </div>
+                        
+                        <div class="character-description">
+                            <h5>角色背景</h5>
+                            <p>年少时，林然和顾辰是一对校园恋人。他们一起逃课去河边写诗，也一起在台风夜里窝在便利店喝热可可。那是一段纯粹、热烈、不掺杂任何现实权衡的爱恋。但一场家庭变故让林然不得不离开那段关系。她选择独自承受，不告而别。
+
+多年后，她已独自生活良久，经营一家小书店，靠插画维持创作，日子看似宁静——直到顾辰的出现，重新搅动了那片死水。</p>
+                        </div>
+                        
+                        <div class="character-attributes">
+                            <div class="character-attribute">
+                                <h5>性格关键词</h5>
+                                <p>温柔内敛、独立坚韧、偶尔逃避</p>
+                            </div>
+                        </div>
+
+                        <div class="character-attributes">
+                            <div class="character-attribute">
+                                <h5>外在形象</h5>
+                                <p>长发微卷、穿着素净，喜欢衬衫与裙装的搭配。眼神柔和中带点倦意，有种“安静又不易接近”的气场。她不是那种夺目的美人，却让人不自觉想多看一眼。举止有分寸，笑容不多，却从不冷漠。</p>
+                            </div>
+                        </div>
+
+                        <div class="character-attributes">
+                            <div class="character-attribute">
+                                <h5>目标动机</h5>
+                                <p>在过去与现在之间找到一个勇敢的选择，活得更像自己。
+最终，她选择走出控制，正视遗憾，重新拥抱那个陪她走过青春的男孩。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="character-attributes">
+                            <div class="character-description">
+                                <h5>剧中关系</h5>
+                                <p>与沈彦是恋人关系，相处稳定且舒适，但缺乏激情；与顾辰是青梅竹马，两人因意外分手，耿耿于怀，感情上有强烈的吸引力。</p>
+                            </div>
+                        </div>
+                        <div class="character-actions">
+                            <button class="character-btn character-btn-edit">编辑角色</button>
+                            <button class="character-btn character-btn-custom">自定义形象</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="btn btn-save">保存草稿</button>
+                    <button class="btn btn-back" onclick="window.location.href='creat_center_2.html'">上一步</button>
+                    <button class="btn btn-next" onclick="window.location.href='creat_center_4.html'">下一步</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div class="tutorial-modal" id="tutorialModal">
+        <div class="tutorial-content">
+            <span class="close-tutorial" onclick="closeTutorial()">&times;</span>
+            <h2>如何设计引人入胜的角色</h2>
+            <div>
+                <p>一个引人入胜的角色是优秀短剧的关键要素。以下是设计角色时应考虑的要点：</p>
+                <ul>
+                    <li><strong>多维度性格</strong>：避免扁平的角色形象，赋予角色多面性的性格特点</li>
+                    <li><strong>明确的动机</strong>：角色应有清晰的目标和动机，驱动他们的行动</li>
+                    <li><strong>内在冲突</strong>：内心的矛盾和挣扎能让角色更加真实立体</li>
+                    <li><strong>独特的外在特征</strong>：外貌、言行、习惯等能使角色更加鲜明</li>
+                    <li><strong>成长空间</strong>：角色应有改变和成长的可能性</li>
+                </ul>
+                <p>角色设计技巧：</p>
+                <ul>
+                    <li>为角色创建背景故事，解释他们的行为和决定</li>
+                    <li>确定角色之间的关系，增加剧情的张力和互动</li>
+                    <li>考虑角色的弱点和缺陷，这往往比优点更能塑造深刻的角色</li>
+                    <li>让角色在对话和行动中体现个性，而不仅仅是描述</li>
+                </ul>
+                <div class="tutorial-images">
+                    <div class="tutorial-image">
+                        <img src="images/actor1.jpg" alt="教程图片1" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20fill%3D%22%23444%22%20width%3D%22400%22%20height%3D%22300%22%2F%3E%3Ctext%20fill%3D%22%23fff%22%20font-family%3D%22sans-serif%22%20font-size%3D%2220%22%20dy%3D%220.35em%22%20x%3D%22200%22%20y%3D%22150%22%20text-anchor%3D%22middle%22%3E%E6%95%99%E7%A8%8B%E5%9B%BE%E7%89%871%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    </div>
+                    <div class="tutorial-image">
+                        <img src="images/actor2.jpg" alt="教程图片2" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20fill%3D%22%23444%22%20width%3D%22400%22%20height%3D%22300%22%2F%3E%3Ctext%20fill%3D%22%23fff%22%20font-family%3D%22sans-serif%22%20font-size%3D%2220%22%20dy%3D%220.35em%22%20x%3D%22200%22%20y%3D%22150%22%20text-anchor%3D%22middle%22%3E%E6%95%99%E7%A8%8B%E5%9B%BE%E7%89%872%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    </div>
+                </div>
+                <p>示例角色分析：</p>
+                <p><strong>林晓（女主角）</strong></p>
+                <p>林晓作为故事的中心角色，她的内心挣扎成为推动剧情的关键。她身处两段感情之间的矛盾，面临诚实与伤害、责任与欲望的冲突。她既不是完全正面的角色，也不是反面角色，而是一个真实的、有缺点的普通人，这种复杂性使观众能够理解并共情她的处境。</p>
+                <p>她的背景（设计师）和性格特点（理性但敏感）为她的决策提供了合理性，同时也为剧情发展奠定了基础。她的行为虽然伤害了他人，但她的懊悔和自责又体现了人性的复杂性。</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openTutorial() {
+            document.getElementById('tutorialModal').style.display = 'flex';
+        }
+        
+        function closeTutorial() {
+            document.getElementById('tutorialModal').style.display = 'none';
+        }
+        
+        function selectCharacter(element, name) {
+            // 切换角色选中状态
+            if(element.classList.contains('selected')) {
+                element.classList.remove('selected');
+            } else {
+                element.classList.add('selected');
+            }
+            
+            // 这里可以添加更新角色详情的逻辑
+            console.log('选择/取消角色: ' + name);
+        }
+        
+        function createNewCharacter() {
+            alert('开启角色创建界面');
+            // 这里可以添加创建新角色的逻辑
+        }
+        
+        function switchTab(tabName) {
+            // 切换标签页的逻辑
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                if(tab.textContent.toLowerCase().includes(tabName)) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+            
+            // 这里可以添加显示不同标签页内容的逻辑
+            console.log('切换到标签页: ' + tabName);
+        }
+    </script>
+</body>
+</html>

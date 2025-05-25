@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreeLineVerse - 创作中心 - 配音选择</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+        
+        :root {
+            --primary-bg: #10072f;
+            --secondary-bg: #1a1040;
+            --accent-color-1: #4fcfff;
+            --accent-color-2: #8A2BE2;
+            --accent-color-3: #f85e9f;
+            --text-light: #f9d4d4;
+            --text-highlight: #36f3c4;
+            --dark-gray: #333333;
+            --medium-gray: #666666;
+            --light-gray: #aaaaaa;
+            --shadow: 0 4px 15px rgba(79, 207, 255, 0.2);
+            --glow: 0 0 8px rgba(79, 207, 255, 0.6);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto", "Microsoft YaHei", "微软雅黑", sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: rgba(26, 16, 64, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent-color-1);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            margin-right: 10px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent-color-2), var(--accent-color-1));
+            box-shadow: var(--glow);
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            margin-left: 30px;
+        }
+        
+        .main-nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+        
+        .main-nav a:hover {
+            color: var(--accent-color-1);
+        }
+        
+        .main-nav a.active {
+            color: var(--accent-color-1);
+        }
+        
+        .main-nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color-1), transparent);
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .create-btn {
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1));
+            color: var(--primary-bg);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-right: 20px;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow);
+        }
+        
+        .create-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(79, 207, 255, 0.4);
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+        
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--secondary-bg);
+            margin-right: 8px;
+            overflow: hidden;
+            border: 2px solid var(--accent-color-1);
+        }
+        
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .creation-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .creation-header h1 {
+            font-size: 36px;
+            background: linear-gradient(90deg, var(--accent-color-3), var(--accent-color-1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .creation-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color-3), var(--accent-color-1));
+            border-radius: 3px;
+        }
+        
+        .creation-header p {
+            font-size: 16px;
+            color: var(--text-highlight);
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .creation-flow {
+            background-color: var(--secondary-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(79, 207, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .creation-flow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1), var(--accent-color-3));
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+        
+        .step-indicator::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 58%; /* This represents progress - updated for step 4 */
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-3));
+            z-index: 2;
+            transition: width 0.5s ease;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .step.active .step-number {
+            background: linear-gradient(135deg, var(--accent-color-2), var(--accent-color-1));
+            box-shadow: 0 0 10px rgba(79, 207, 255, 0.7);
+        }
+        
+        .step.completed .step-number {
+            background: linear-gradient(135deg, var(--accent-color-3), var(--accent-color-1));
+        }
+        
+        .step-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--light-gray);
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+        
+        .step.active .step-title {
+            color: var(--accent-color-1);
+            font-weight: bold;
+        }
+        
+        .step.completed .step-title {
+            color: var(--text-highlight);
+        }
+        
+        .step-content {
+            padding: 20px 0;
+        }
+        
+        .tutorial-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--accent-color-1);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            background-color: rgba(79, 207, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .tutorial-link i {
+            margin-right: 5px;
+            font-size: 16px;
+        }
+        
+        .tutorial-link:hover {
+            background-color: rgba(79, 207, 255, 0.2);
+            box-shadow: 0 0 5px rgba(79, 207, 255, 0.5);
+        }
+        
+        .input-section {
+            margin-bottom: 30px;
+        }
+        
+        .input-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+        }
+        
+        .input-section h3::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background: linear-gradient(to bottom, var(--accent-color-1), var(--accent-color-3));
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 14px;
+        }
+        
+        .btn-back {
+            background-color: rgba(26, 16, 64, 0.5);
+            color: var(--text-light);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .btn-back:hover {
+            background-color: rgba(26, 16, 64, 0.8);
+            border-color: var(--accent-color-1);
+        }
+        
+        .btn-next {
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1));
+            color: var(--primary-bg);
+            font-weight: bold;
+            box-shadow: var(--glow);
+        }
+        
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(79, 207, 255, 0.4);
+        }
+        
+        .btn-save {
+            background-color: transparent;
+            color: var(--accent-color-1);
+            border: 1px solid var(--accent-color-1);
+            margin-right: auto;
+            margin-left: 10px;
+        }
+        
+        .btn-save:hover {
+            background-color: rgba(79, 207, 255, 0.15);
+        }
+        
+        .tutorial-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .tutorial-content {
+            background-color: var(--secondary-bg);
+            border-radius: 16px;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            box-shadow: 0 0 20px rgba(79, 207, 255, 0.3);
+        }
+        
+        .close-tutorial {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-tutorial:hover {
+            color: var(--accent-color-1);
+        }
+        
+        .tutorial-content h2 {
+            color: var(--accent-color-1);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .tutorial-content p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .tutorial-content ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        
+        .tutorial-content li {
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+        
+        .tutorial-content strong {
+            color: var(--text-highlight);
+        }
+        
+        .tutorial-images {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .tutorial-image {
+            width: calc(50% - 8px);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .tutorial-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        /* 配音选择页面特定样式 */
+        .voice-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .voice-item {
+            display: flex;
+            align-items: center;
+            background-color: rgba(26, 16, 64, 0.5);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .voice-item:hover {
+            border-color: var(--accent-color-1);
+            background-color: rgba(26, 16, 64, 0.8);
+            transform: translateY(-2px);
+        }
+        
+        .voice-item.selected {
+            border-width: 2px;
+            border-color: var(--accent-color-1);
+            box-shadow: 0 0 15px rgba(79, 207, 255, 0.3);
+        }
+        
+        .voice-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--secondary-bg);
+            overflow: hidden;
+            margin-right: 15px;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .voice-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .voice-info {
+            flex: 1;
+        }
+        
+        .voice-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+        
+        .voice-description {
+            font-size: 14px;
+            color: var(--light-gray);
+        }
+        
+        .voice-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .play-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color-2), var(--accent-color-1));
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow);
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .voice-selected-mark {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color-2), var(--accent-color-1));
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .voice-item.selected .voice-selected-mark {
+            opacity: 1;
+        }
+        
+        .voice-script {
+            background-color: rgba(26, 16, 64, 0.7);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .voice-script h4 {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .voice-script h4::before {
+            content: '';
+            display: inline-block;
+            width: 3px;
+            height: 14px;
+            background: linear-gradient(to bottom, var(--accent-color-1), var(--accent-color-3));
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+        
+        .script-content {
+            height: 150px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .script-content p {
+            margin-bottom: 10px;
+        }
+        
+        .script-content .character {
+            color: var(--accent-color-1);
+            font-weight: bold;
+        }
+        
+        .voice-upload {
+            display: flex;
+            align-items: center;
+            background-color: rgba(26, 16, 64, 0.5);
+            border: 1px dashed rgba(79, 207, 255, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .voice-upload:hover {
+            background-color: rgba(79, 207, 255, 0.1);
+            border-color: var(--accent-color-1);
+        }
+        
+        .upload-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            font-size: 24px;
+            color: var(--accent-color-1);
+        }
+        
+        .upload-text {
+            text-align: left;
+        }
+        
+        .upload-text h4 {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+        
+        .upload-text p {
+            font-size: 14px;
+            color: var(--light-gray);
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(79, 207, 255, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .tab.active {
+            color: var(--accent-color-1);
+            font-weight: bold;
+        }
+        
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color-1), transparent);
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .step-title {
+                font-size: 12px;
+            }
+            
+            .tutorial-image {
+                width: 100%;
+            }
+            
+            .voice-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .voice-avatar {
+                margin-bottom: 10px;
+            }
+            
+            .voice-controls {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"></div>
+                ThreeLineVerse
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#" class="active">创作中心</a></li>
+                    <li><a href="#">看剧中心</a></li>
+                    <li><a href="#">榜单</a></li>
+                    <li><a href="#">教程</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <a href="#" class="user-profile">
+                    <div class="user-avatar">
+                        <img src="https://picsum.photos/36/36" alt="用户头像" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2236%22%20height%3D%2236%22%20viewBox%3D%220%200%2036%2036%22%3E%3Ccircle%20fill%3D%22%23444%22%20cx%3D%2218%22%20cy%3D%2218%22%20r%3D%2218%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M18%2021a7%207%200%201%200-7-7%207%207%200%200%200%207%207zm0%204c-4.67%200-14%202.33-14%207v3h28v-3c0-4.67-9.33-7-14-7z%22%2F%3E%3C%2Fsvg%3E'">
+                    </div>
+                    <span>用户名</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="creation-header">
+            <h1>创作你的AI短剧</h1>
+            <p>从一段简短的"三行情诗"开始，创造属于你的故事世界</p>
+        </div>
+        
+        <div class="creation-flow">
+            <div class="step-indicator">
+                <div class="step completed">
+                    <div class="step-number">1</div>
+                    <div class="step-title">情诗创意</div>
+                </div>
+                <div class="step completed">
+                    <div class="step-number">2</div>
+                    <div class="step-title">剧本生成</div>
+                </div>
+                <div class="step completed">
+                    <div class="step-number">3</div>
+                    <div class="step-title">角色设定</div>
+                </div>
+                <div class="step active">
+                    <div class="step-number">4</div>
+                    <div class="step-title">配音选择</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-title">分镜设计</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-title">最终剪辑</div>
+                </div>
+            </div>
+            
+            <div class="step-content">
+                <a href="#" class="tutorial-link" onclick="openTutorial()">
+                    <i>❓</i> 查看教程：如何选择合适的配音
+                </a>
+                
+                <div class="input-section">
+                    <h3>配音选择</h3>
+                    <p style="color: var(--text-light); margin-bottom: 15px;">为您的角色选择合适的配音</p>
+                    
+                    <div class="tabs">
+                        <div class="tab active" onclick="switchTab('ai-voices')">AI配音</div>
+                        <div class="tab" onclick="switchTab('upload')">上传配音</div>
+                        <div class="tab" onclick="switchTab('record')">录制配音</div>
+                    </div>
+                    
+                    <div class="voice-list">
+                        <div class="voice-item selected" onclick="selectVoice(this, '林然')">
+                            <div class="voice-avatar">
+                                <img src="images/linran_lg.png"  alt="林然配音" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2250%22%20height%3D%2250%22%20viewBox%3D%220%200%2050%2050%22%3E%3Crect%20fill%3D%22%23444%22%20width%3D%2250%22%20height%3D%2250%22%2F%3E%3Ctext%20fill%3D%22%23fff%22%20font-family%3D%22sans-serif%22%20font-size%3D%2212%22%20dy%3D%220.35em%22%20x%3D%2225%22%20y%3D%2225%22%20text-anchor%3D%22middle%22%3E%E6%9E%97%E6%99%93%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                            </div>
+                            <div class="voice-info">
+                                <div class="voice-name">林然 - 柔和女声</div>
+                                <div class="voice-description">温柔细腻，适合表达内心情感丰富的女性角色</div>
+                            </div>
+                            <div class="voice-controls">
+                                <div class="play-btn" onclick="playVoice('林然', event)">▶</div>
+                            </div>
+                            <div class="voice-selected-mark">✓</div>
+                        </div>
+                        
+                        <div class="voice-item selected" onclick="selectVoice(this, '顾辰')">
+                            <div class="voice-avatar">
+                                <img src="images/guchen_lg.png" alt="顾辰配音" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2250%22%20height%3D%2250%22%20viewBox%3D%220%200%2050%2050%22%3E%3Crect%20fill%3D%22%23444%22%20width%3D%2250%22%20height%3D%2250%22%2F%3E%3Ctext%20fill%3D%22%23fff%22%20font-family%3D%22sans-serif%22%20font-size%3D%2212%22%20dy%3D%220.35em%22%20x%3D%2225%22%20y%3D%2225%22%20text-anchor%3D%22middle%22%3E%E9%99%88%E9%BB%98%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                            </div>
+                            <div class="voice-info">
+                                <div class="voice-name">顾辰 - 成熟男声</div>
+                                <div class="voice-description">低沉稳重，富有磁性，适合成熟稳重的男性角色</div>
+                            </div>
+                            <div class="voice-controls">
+                                <div class="play-btn" onclick="playVoice('顾辰', event)">▶</div>
+                            </div>
+                            <div class="voice-selected-mark">✓</div>
+                        </div>
+                        
+                        <div class="voice-item selected" onclick="selectVoice(this, '沈彦')">
+                            <div class="voice-avatar">
+                                <img src="images/shenyan_lg.png" alt="沈彦配音" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2250%22%20height%3D%2250%22%20viewBox%3D%220%200%2050%2050%22%3E%3Crect%20fill%3D%22%23444%22%20width%3D%2250%22%20height%3D%2250%22%2F%3E%3Ctext%20fill%3D%22%23fff%22%20font-family%3D%22sans-serif%22%20font-size%3D%2212%22%20dy%3D%220.35em%22%20x%3D%2225%22%20y%3D%2225%22%20text-anchor%3D%22middle%22%3E%E5%BC%A0%E6%89%AC%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                            </div>
+                            <div class="voice-info">
+                                <div class="voice-name">沈彦 - 深情男声</div>
+                                <div class="voice-description">情感丰富，细腻表达，适合感性的男性角色</div>
+                            </div>
+                            <div class="voice-controls">
+                                <div class="play-btn" onclick="playVoice('沈彦', event)">▶</div>
+                            </div>
+                            <div class="voice-selected-mark">✓</div>
+                        </div>
+                        
+                        <div class="voice-item selected" onclick="selectVoice(this, '旁白')">
+                            <div class="voice-avatar">
+                                <img src="images/xtcv_lg.png" alt="旁白配音" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2250%22%20height%3D%2250%22%20viewBox%3D%220%200%2050%2050%22%3E%3Crect%20fill%3D%22%23444%22%20width%3D%2250%22%20height%3D%2250%22%2F%3E%3Ctext%20fill%3D%22%23fff%22%20font-family%3D%22sans-serif%22%20font-size%3D%2212%22%20dy%3D%220.35em%22%20x%3D%2225%22%20y%3D%2225%22%20text-anchor%3D%22middle%22%3E%E6%97%81%E7%99%BD%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                            </div>
+                            <div class="voice-info">
+                                <div class="voice-name">旁白 - 叙事女声</div>
+                                <div class="voice-description">清晰流畅，富有节奏感，适合旁白和叙事</div>
+                            </div>
+                            <div class="voice-controls">
+                                <div class="play-btn" onclick="playVoice('旁白', event)">▶</div>
+                            </div>
+                            <div class="voice-selected-mark">✓</div>
+                        </div>
+                        
+                        <div class="voice-upload" onclick="uploadVoice()">
+                            <div class="upload-icon">
+                                +
+                            </div>
+                            <div class="upload-text">
+                                <h4>添加自定义配音</h4>
+                                <p>上传您自己的配音文件或录制新的配音</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="voice-script">
+                        <h4>配音台词</h4>
+                            <div class="script-content">
+                            <p><span class="character">旁白：</span>他们坐在一起，窗外的光影在桌面斑驳跳跃。谁也没有提起过往，气氛温和又小心翼翼。</p>
+                            <p><span class="character">旁白：</span>林然说着近年的趣事，顾辰听着，时而点头，时而回应，却始终低着头搅着杯中的咖啡——仿佛只要一抬头，情绪就会溢出来。</p>
+                            <p><span class="character">顾辰：</span>我想知道，你的身边，还有没有我的位置。</p>
+                            <p><span class="character">林然：</span>我想让你见一个人。</p>
+                            </div>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="btn btn-save">保存草稿</button>
+                    <button class="btn btn-back" onclick="window.location.href='creat_center_3.html'">上一步</button>
+                    <button class="btn btn-next" onclick="window.location.href='creat_center_5.html'">下一步</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div class="tutorial-modal" id="tutorialModal">
+        <div class="tutorial-content">
+            <span class="close-tutorial" onclick="closeTutorial()">&times;</span>
+            <h2>如何选择合适的配音</h2>
+            <div>
+                <p>配音对短剧的情感表达和观众体验至关重要，以下是选择合适配音的要点：</p>
+                <ul>
+                    <li><strong>与角色特性匹配</strong>：配音应符合角色的性格、年龄和身份特征</li>
+                    <li><strong>情感表现力</strong>：好的配音能准确传达角色的情感变化和微妙情绪</li>
+                    <li><strong>声音质感</strong>：考虑声音的音色、音调和节奏，确保听觉美感</li>
+                    <li><strong>整体协调性</strong>：不同角色的配音应形成合理的对比和互补</li>
+                    <li><strong>台词表现</strong>：配音应能自然流畅地表达台词，避免生硬感</li>
+                </ul>
+                <p>配音技巧：</p>
+                <ul>
+                    <li>注意停顿和语速的变化，增强情感表达</li>
+                    <li>利用音量和语调的变化表现角色的情绪波动</li>
+                    <li>确保声音清晰，发音准确，便于观众理解</li>
+                    <li>为角色找到独特的声音特点，增强辨识度</li>
+                </ul>
+                <div class="tutorial-images">
+                    <div class="tutorial-image">
+                        <img src="https://picsum.photos/400/300?random=17" alt="教程图片1" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20fill%3D%22%23444%22%20width%3D%22400%22%20height%3D%22300%22%2F%3E%3Ctext%20fill%3D%22%23fff%22%20font-family%3D%22sans-serif%22%20font-size%3D%2220%22%20dy%3D%220.35em%22%20x%3D%22200%22%20y%3D%22150%22%20text-anchor%3D%22middle%22%3E%E6%95%99%E7%A8%8B%E5%9B%BE%E7%89%871%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    </div>
+                    <div class="tutorial-image">
+                        <img src="https://picsum.photos/400/300?random=18" alt="教程图片2" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20fill%3D%22%23444%22%20width%3D%22400%22%20height%3D%22300%22%2F%3E%3Ctext%20fill%3D%22%23fff%22%20font-family%3D%22sans-serif%22%20font-size%3D%2220%22%20dy%3D%220.35em%22%20x%3D%22200%22%20y%3D%22150%22%20text-anchor%3D%22middle%22%3E%E6%95%99%E7%A8%8B%E5%9B%BE%E7%89%872%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    </div>
+                </div>
+                <p>案例分析：</p>
+                <p><strong>林晓角色的配音选择</strong></p>
+                <p>作为剧中的女主角，林晓的配音需要能够表现出她内心的纠结和情感复杂性。选择柔和但情感丰富的女声，能够在关键情感场景（如坦白、后悔、悲伤）中展现出不同的情绪层次。特别是在她说"我不知道..."这句台词时，配音需要表现出她的犹豫不决和内心挣扎。</p>
+                <p>而对于陈默和张扬两个角色，虽然都是男性声音，但应该有明显的区别：陈默的声音更加成熟稳重，而张扬的声音则更具情感色彩，这种对比有助于观众区分角色并理解他们之间的差异。</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openTutorial() {
+            document.getElementById('tutorialModal').style.display = 'flex';
+        }
+        
+        function closeTutorial() {
+            document.getElementById('tutorialModal').style.display = 'none';
+        }
+        
+        function selectVoice(element, name) {
+            // 切换角色选中状态
+            if(element.classList.contains('selected')) {
+                element.classList.remove('selected');
+            } else {
+                element.classList.add('selected');
+            }
+            
+            // 这里可以添加更新角色详情的逻辑
+            console.log('选择/取消配音: ' + name);
+        }
+        
+        function playVoice(name, event) {
+            // 阻止事件冒泡，防止触发父元素的点击事件
+            event.stopPropagation();
+            
+            // 播放配音的逻辑
+            alert('播放' + name + '的配音样本');
+        }
+        
+        function uploadVoice() {
+            alert('打开配音上传/录制界面');
+            // 这里可以添加上传或录制配音的逻辑
+        }
+        
+        function switchTab(tabName) {
+            // 切换标签页的逻辑
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                if(tab.textContent.toLowerCase().includes(tabName)) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+            
+            // 这里可以添加显示不同标签页内容的逻辑
+            console.log('切换到标签页: ' + tabName);
+        }
+    </script>
+</body>
+</html>

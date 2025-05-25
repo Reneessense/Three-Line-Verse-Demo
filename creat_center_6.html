@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreeLineVerse - 创作中心 - 最终剪辑</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+        
+        :root {
+            --primary-bg: #10072f;
+            --secondary-bg: #1a1040;
+            --accent-color-1: #4fcfff;
+            --accent-color-2: #8A2BE2;
+            --accent-color-3: #f85e9f;
+            --text-light: #f9d4d4;
+            --text-highlight: #36f3c4;
+            --dark-gray: #333333;
+            --medium-gray: #666666;
+            --light-gray: #aaaaaa;
+            --shadow: 0 4px 15px rgba(79, 207, 255, 0.2);
+            --glow: 0 0 8px rgba(79, 207, 255, 0.6);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto", "Microsoft YaHei", "微软雅黑", sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: rgba(26, 16, 64, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent-color-1);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            margin-right: 10px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent-color-2), var(--accent-color-1));
+            box-shadow: var(--glow);
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            margin-left: 30px;
+        }
+        
+        .main-nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+        
+        .main-nav a:hover {
+            color: var(--accent-color-1);
+        }
+        
+        .main-nav a.active {
+            color: var(--accent-color-1);
+        }
+        
+        .main-nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color-1), transparent);
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .create-btn {
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1));
+            color: var(--primary-bg);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-right: 20px;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow);
+        }
+        
+        .create-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(79, 207, 255, 0.4);
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+        
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--secondary-bg);
+            margin-right: 8px;
+            overflow: hidden;
+            border: 2px solid var(--accent-color-1);
+        }
+        
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .creation-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .creation-header h1 {
+            font-size: 36px;
+            background: linear-gradient(90deg, var(--accent-color-3), var(--accent-color-1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .creation-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color-3), var(--accent-color-1));
+            border-radius: 3px;
+        }
+        
+        .creation-header p {
+            font-size: 16px;
+            color: var(--text-highlight);
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .creation-flow {
+            background-color: var(--secondary-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(79, 207, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .creation-flow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1), var(--accent-color-3));
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+        
+        .step-indicator::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 96%; /* This represents progress - updated for step 6 */
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-3));
+            z-index: 2;
+            transition: width 0.5s ease;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .step.active .step-number {
+            background: linear-gradient(135deg, var(--accent-color-2), var(--accent-color-1));
+            box-shadow: 0 0 10px rgba(79, 207, 255, 0.7);
+        }
+        
+        .step.completed .step-number {
+            background: linear-gradient(135deg, var(--accent-color-3), var(--accent-color-1));
+        }
+        
+        .step-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--light-gray);
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+        
+        .step.active .step-title {
+            color: var(--accent-color-1);
+            font-weight: bold;
+        }
+        
+        .step.completed .step-title {
+            color: var(--text-highlight);
+        }
+        
+        .step-content {
+            padding: 20px 0;
+        }
+        
+        .tutorial-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--accent-color-1);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            background-color: rgba(79, 207, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .tutorial-link i {
+            margin-right: 5px;
+            font-size: 16px;
+        }
+        
+        .tutorial-link:hover {
+            background-color: rgba(79, 207, 255, 0.2);
+            box-shadow: 0 0 5px rgba(79, 207, 255, 0.5);
+        }
+        
+        .input-section {
+            margin-bottom: 30px;
+        }
+        
+        .input-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+        }
+        
+        .input-section h3::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background: linear-gradient(to bottom, var(--accent-color-1), var(--accent-color-3));
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 14px;
+        }
+        
+        .btn-back {
+            background-color: rgba(26, 16, 64, 0.5);
+            color: var(--text-light);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .btn-back:hover {
+            background-color: rgba(26, 16, 64, 0.8);
+            border-color: var(--accent-color-1);
+        }
+        
+        .btn-next {
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1));
+            color: var(--primary-bg);
+            font-weight: bold;
+            box-shadow: var(--glow);
+        }
+        
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(79, 207, 255, 0.4);
+        }
+        
+        .btn-save {
+            background-color: transparent;
+            color: var(--accent-color-1);
+            border: 1px solid var(--accent-color-1);
+            margin-right: auto;
+            margin-left: 10px;
+        }
+        
+        .btn-save:hover {
+            background-color: rgba(79, 207, 255, 0.15);
+        }
+        
+        .tutorial-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+
+        .tutorial-modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+
+        .tutorial-content {
+            background-color: var(--secondary-bg);
+            border-radius: 16px;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            box-shadow: 0 0 20px rgba(79, 207, 255, 0.3);
+        }
+        
+        .close-tutorial {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-tutorial:hover {
+            color: var(--accent-color-1);
+        }
+        
+        .tutorial-content h2 {
+            color: var(--accent-color-1);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .tutorial-content p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .tutorial-content ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        
+        .tutorial-content li {
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+        
+        .tutorial-content strong {
+            color: var(--text-highlight);
+        }
+        
+        .tutorial-images {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .tutorial-image {
+            width: calc(50% - 8px);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+        }
+        
+        .tutorial-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        /* 最终剪辑页面特定样式 */
+        .final-edit-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .preview-panel {
+            flex: 2;
+            background-color: rgba(26, 16, 64, 0.5);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .video-preview {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: var(--dark-gray);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .video-overlay:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .play-button {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color-2), var(--accent-color-1));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(79, 207, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+        
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 20px 0 20px 30px;
+            border-color: transparent transparent transparent #ffffff;
+            margin-left: 8px;
+        }
+        
+        .video-controls {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 35%; /* Simulated progress */
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1));
+            border-radius: 3px;
+        }
+        
+        .time-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--light-gray);
+        }
+        
+        .control-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 5px;
+        }
+        
+        .control-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .control-button:hover {
+            background-color: rgba(79, 207, 255, 0.3);
+        }
+        
+        .control-button.primary {
+            background: linear-gradient(135deg, var(--accent-color-2), var(--accent-color-1));
+            box-shadow: 0 0 10px rgba(79, 207, 255, 0.4);
+        }
+        
+        .control-button.primary:hover {
+            transform: scale(1.1);
+        }
+        
+        .editing-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .editing-section {
+            background-color: rgba(26, 16, 64, 0.5);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .editing-section h4 {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .editing-section h4::before {
+            content: '';
+            display: inline-block;
+            width: 3px;
+            height: 14px;
+            background: linear-gradient(to bottom, var(--accent-color-1), var(--accent-color-3));
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+        
+        .slider-control {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--light-gray);
+        }
+        
+        .slider {
+            width: 100%;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-color-1);
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(79, 207, 255, 0.6);
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-color-1);
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(79, 207, 255, 0.6);
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-option {
+            padding: 6px 12px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            border-radius: 15px;
+            font-size: 14px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-option:hover {
+            background-color: rgba(79, 207, 255, 0.15);
+            border-color: var(--accent-color-1);
+        }
+        
+        .filter-option.selected {
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1));
+            color: white;
+            border: none;
+        }
+        
+        .transition-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .transition-option {
+            flex: 1;
+            min-width: 70px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .transition-option:hover {
+            background-color: rgba(79, 207, 255, 0.15);
+            border-color: var(--accent-color-1);
+        }
+        
+        .transition-option.selected {
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1));
+            color: white;
+            border: none;
+        }
+        
+        .music-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .music-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .music-item:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        .music-item.selected {
+            background-color: rgba(79, 207, 255, 0.15);
+            border-left: 3px solid var(--accent-color-1);
+        }
+        
+        .music-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .music-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--accent-color-1);
+        }
+        
+        .music-title {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .music-preview {
+            color: var(--accent-color-1);
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .publish-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .cover-upload {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px dashed rgba(79, 207, 255, 0.3);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .cover-upload:hover {
+            background-color: rgba(79, 207, 255, 0.1);
+            border-color: var(--accent-color-1);
+        }
+        
+        .cover-upload i {
+            font-size: 24px;
+            color: var(--accent-color-1);
+            margin-bottom: 10px;
+        }
+        
+        .cover-upload p {
+            font-size: 14px;
+            color: var(--light-gray);
+        }
+        
+        .publish-title {
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            border-radius: 5px;
+            font-size: 14px;
+            color: var(--text-light);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .publish-title:focus {
+            border-color: var(--accent-color-1);
+            box-shadow: 0 0 5px rgba(79, 207, 255, 0.4);
+        }
+        
+        .publish-description {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            border-radius: 5px;
+            font-size: 14px;
+            color: var(--text-light);
+            outline: none;
+            resize: none;
+            transition: all 0.3s ease;
+        }
+        
+        .publish-description:focus {
+            border-color: var(--accent-color-1);
+            box-shadow: 0 0 5px rgba(79, 207, 255, 0.4);
+        }
+        
+        .publish-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tag-item {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+            background-color: rgba(79, 207, 255, 0.1);
+            border-radius: 15px;
+            font-size: 12px;
+            color: var(--accent-color-1);
+        }
+        
+        .tag-remove {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        
+        .tag-input {
+            padding: 5px 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            border-radius: 15px;
+            font-size: 12px;
+            color: var(--text-light);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .tag-input:focus {
+            border-color: var(--accent-color-1);
+        }
+        
+        .final-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .action-btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-cancel {
+             background-color: rgba(26, 16, 64, 0.5);
+             color: var(--text-light);
+             border: 1px solid rgba(79, 207, 255, 0.3);
+        }
+
+        .btn-cancel:hover {
+             background-color: rgba(26, 16, 64, 0.8);
+            border-color: var(--accent-color-1);
+        }
+
+        .btn-preview {
+             background-color: rgba(79, 207, 255, 0.15);
+             color: var(--accent-color-1);
+             border: 1px solid var(--accent-color-1);
+        }
+
+        .btn-preview:hover {
+             background-color: rgba(79, 207, 255, 0.3);
+             box-shadow: 0 0 10px rgba(79, 207, 255, 0.3);
+        }
+
+        .btn-publish {
+            background: linear-gradient(90deg, var(--accent-color-2), var(--accent-color-1));
+            color: var(--primary-bg);
+            box-shadow: 0 0 12px rgba(79, 207, 255, 0.5);  /* 柔和的发光 */
+            border: none;                  /* ✅ 彻底去掉黑边 */
+            border-radius: 8px;            /* 保留圆角 */
+            padding: 12px 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            outline: none;                 /* ✅ 去掉点击时的边框闪光 */
+        }
+
+        .btn-publish:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(79, 207, 255, 0.4);
+        }
+
+        .btn-publish:focus {
+            outline: none;                 /* ✅ 避免点击后出现黑边 */
+            box-shadow: 0 0 15px rgba(79, 207, 255, 0.6);
+        }
+
+        .publish-modal {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(4px);
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .publish-modal.show {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+
+
+         .publish-modal-content {
+            background-color: var(--secondary-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(79, 207, 255, 0.3);
+            box-shadow: 0 0 20px rgba(79, 207, 255, 0.4);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            color: #29FFB0;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .modal-subtitle {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            color: var(--text-light);
+            cursor: pointer;
+        }
+
+        .frame-detail-styles {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+        }
+
+        .frame-style-option {
+        padding: 6px 14px;
+        border-radius: 20px;
+        border: 1px solid rgba(79, 207, 255, 0.4);
+        color: var(--text-light);
+        background-color: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 14px;
+        }
+
+        .frame-style-option:hover {
+        border-color: var(--accent-color-1);
+        }
+
+        .frame-style-option.selected {
+        background: linear-gradient(135deg, var(--accent-color-2), var(--accent-color-1));
+        color: var(--primary-bg);
+        font-weight: bold;
+        box-shadow: 0 0 10px rgba(79, 207, 255, 0.4);
+        }
+
+
+
+        @media screen and (max-width: 768px) {
+        .final-edit-container {
+             flex-direction: column;
+        }
+    
+        .control-buttons {
+             flex-wrap: wrap;
+        }
+    
+        .filter-options, .transition-options {
+            justify-content: center;
+        }
+    
+        .header-container {
+             flex-direction: column;
+             gap: 15px;
+        }
+    
+        .main-nav ul {
+             flex-wrap: wrap;
+             justify-content: center;
+        }
+    
+        .main-nav li {
+             margin: 5px 10px;
+        }
+    
+        .step-indicator {
+             overflow-x: auto;
+             padding-bottom: 10px;
+        }
+    
+        .step {
+             min-width: 80px;
+        }
+    
+        .tutorial-image {
+             width: 100%;
+        }
+    
+        .final-actions {
+             flex-direction: column;
+        }
+    
+        .action-btn {
+             width: 100%;
+        }
+    }
+
+    /* 鼠标指针样式 */
+    .cursor-custom {
+         cursor: pointer;
+    }
+
+    /* 滚动条美化 */
+    ::-webkit-scrollbar {
+         width: 8px;
+         height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+         background: rgba(0, 0, 0, 0.1);
+         border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+         background: linear-gradient(var(--accent-color-2), var(--accent-color-1));
+         border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+         background: linear-gradient(var(--accent-color-3), var(--accent-color-1));
+    }
+
+    /* 动画效果 */
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(79, 207, 255, 0.4);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(79, 207, 255, 0);
+        }
+        100% {
+             box-shadow: 0 0 0 0 rgba(79, 207, 255, 0);
+        }
+    }    
+
+    .pulse-animation {
+         animation: pulse 2s infinite;
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"></div>
+                ThreeLineVerse
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#" class="active">创作中心</a></li>
+                    <li><a href="#">看剧中心</a></li>
+                    <li><a href="#">榜单</a></li>
+                    <li><a href="#">教程</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <a href="#" class="user-profile">
+                    <div class="user-avatar">
+                        <img src="https://picsum.photos/36/36" alt="用户头像" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2236%22%20height%3D%2236%22%20viewBox%3D%220%200%2036%2036%22%3E%3Ccircle%20fill%3D%22%23444%22%20cx%3D%2218%22%20cy%3D%2218%22%20r%3D%2218%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M18%2021a7%207%200%201%200-7-7%207%207%200%200%200%207%207zm0%204c-4.67%200-14%202.33-14%207v3h28v-3c0-4.67-9.33-7-14-7z%22%2F%3E%3C%2Fsvg%3E'">
+                    </div>
+                    <span>用户名</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="creation-header">
+            <h1>创作你的AI短剧</h1>
+            <p>从一段简短的"三行情诗"开始，创造属于你的故事世界</p>
+        </div>
+
+        <div class="creation-flow">
+            <div class="step-indicator">
+                <div class="step completed">
+                    <div class="step-number">1</div>
+                    <div class="step-title">情诗创意</div>
+                </div>
+                <div class="step completed">
+                    <div class="step-number">2</div>
+                    <div class="step-title">剧本生成</div>
+                </div>
+                <div class="step completed">
+                    <div class="step-number">3</div>
+                    <div class="step-title">角色设定</div>
+                </div>
+                <div class="step completed">
+                    <div class="step-number">4</div>
+                    <div class="step-title">配音选择</div>
+                </div>
+                <div class="step completed">
+                    <div class="step-number">5</div>
+                    <div class="step-title">分镜设计</div>
+                </div>
+                <div class="step active">
+                    <div class="step-number">6</div>
+                    <div class="step-title">最终剪辑</div>
+                </div>
+            </div>
+
+            <div class="step_content">
+                <a href="#" class="tutorial-link" onclick="openTutorial()">
+                    <i>❓</i> 查看教程：如何剪辑出扣人心弦的作品
+                </a>
+
+                <div class="input_section">
+                <div class="editing-section">
+                    <h4>最终剪辑</h4>
+                    <div class="filter-options"></div>                    
+<!-- 视频 -->
+                <video controls width="1100" height="750" poster="test_video.jpg" playsinline>
+                    <source src="test_video.mp4" type="video/mp4">
+                </video>
+                </div>
+                </div>
+            </div>
+
+<!-- 🎨 风格滤镜选择 -->
+            <div class="editing-section">
+                <h4 style="margin-top: 20px; margin-bottom: 10px; color: var(--text-light);">视觉风格</h4>
+                    <div class="frame-detail-styles">
+                        <div class="frame-style-option" onclick="selectStyle(this)">荒原风</div>
+                        <div class="frame-style-option" onclick="selectStyle(this)">原色</div>
+                        <div class="frame-style-option" onclick="selectStyle(this)">电影感</div>
+                        <div class="frame-style-option" onclick="selectStyle(this)">冷蓝</div>
+                        <div class="frame-style-option" onclick="selectStyle(this)">暖橙</div>
+                        <div class="frame-style-option" onclick="selectStyle(this)">复古胶片</div>
+                        <div class="frame-style-option" onclick="selectStyle(this)">黑白</div>
+                        <div class="frame-style-option" onclick="selectStyle(this)">奶油质感</div>
+                        <div class="frame-style-option selected" onclick="selectStyle(this)">日系柔光</div>
+                        <div class="frame-style-option" onclick="selectStyle(this)">末日氛围</div>
+                        <div class="frame-style-option" onclick="selectStyle(this)">自然纪实</div>
+                        <div class="frame-style-option" onclick="selectStyle(this)">光影迷情</div>
+                    </div>
+            </div>
+
+<!-- 🎵 音乐选择 -->
+                <div class="editing-section">
+                    <h4>背景音乐</h4>
+                    <div class="music-list">
+                    <div class="music-item selected">
+                        <div class="music-info">
+                        <div class="music-icon">🎵</div>
+                        <div class="music-title">轻柔钢琴</div>
+                        </div>
+                        <div class="music-preview">试听</div>
+                    </div>
+                    <div class="music-item">
+                        <div class="music-info">
+                        <div class="music-icon">🎵</div>
+                        <div class="music-title">深夜街头</div>
+                        </div>
+                        <div class="music-preview">试听</div>
+                    </div>
+                    <div class="music-item">
+                        <div class="music-info">
+                        <div class="music-icon">🎵</div>
+                        <div class="music-title">悲怆情绪</div>
+                        </div>
+                        <div class="music-preview">试听</div>
+                    </div>
+                    <div class="music-item">
+                        <div class="music-info">
+                        <div class="music-icon">🎵</div>
+                        <div class="music-title">电子氛围</div>
+                        </div>
+                        <div class="music-preview">试听</div>
+                    </div>
+                    </div>
+                </div>
+
+<!-- 🖼️ 封面上传 + 标题 + 简介 + 标签 -->
+                <div class="editing-section">
+                    <h4>发布设置</h4>
+                    <div class="publish-options">
+                    <div class="cover-upload">
+                        <i>📷</i>
+                        <p>点击上传封面</p>
+                    </div>
+                    <input type="text" class="publish-title" placeholder="请输入作品标题">
+                    <textarea class="publish-description" placeholder="填写一句话简介..." maxlength="100"></textarea>
+                    <div class="publish-tags">
+                        <div class="tag-item">#爱情</div>
+                        <div class="tag-item">#三行情诗</div>
+                        <input type="text" class="tag-input" placeholder="添加标签">
+                    </div>
+                    </div>
+                </div>
+
+                <div class="navigation-buttons">
+                    <button class="btn btn-save">保存草稿</button>
+                    <button class="btn btn-back" onclick="window.location.href='creat_center_5.html'">上一步</button>
+                    <button class="action-btn btn-publish" type="button">发布作品</button>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </main>
+
+<!-- 查看教程 -->
+    <div class="tutorial-modal" id="tutorialModal">
+                <div class="tutorial-content">
+                    <span class="close-tutorial" onclick="closeTutorial()">&times;</span>
+                    <h2>如何剪辑出扣人心弦的作品</h2>
+                    <div>
+                        <p>剪辑是赋予影像节奏与情感的艺术，是把创意转化为感染力的关键环节。一个好的剪辑不仅连接镜头，更能激发观众的情绪反应。以下是几个关键要素：</p>
+                        <ul>
+                            <li><strong>情绪节奏控制</strong>：通过剪辑速度、镜头长度的变化，引导观众的情绪起伏</li>
+                            <li><strong>画面与音效同步</strong>：音乐节拍、对白节奏与画面变化保持协调，可显著增强沉浸感</li>
+                            <li><strong>转场与节奏感</strong>：使用交叉剪辑、渐变、硬切等方式加强场景之间的节奏转换</li>
+                            <li><strong>视觉节律</strong>：通过节奏重复或突变强化某一主题或情感转折</li>
+                            <li><strong>聚焦主题</strong>：剪掉冗余信息，突出人物动机或情感线索，让观众抓住核心</li>
+                        </ul>
+                        <p>剪辑实用技巧：</p>
+                        <ul>
+                            <li>利用<strong>“情绪转场”</strong>：在人物情绪波动处剪切，可制造冲击或反差</li>
+                            <li>控制<strong>节奏层次</strong>：快节奏用于紧张片段，慢节奏适合表达情绪、氛围或回忆</li>
+                            <li>使用<strong>音画对位/错位</strong>：声音提前或延后进入画面，引发期待或反讽</li>
+                            <li>结尾处用<strong>慢镜头+渐远+配乐淡出</strong>，为短剧留出“回味空间”</li>
+                        </ul>
+                        <div class="tutorial-images">
+                            <div class="tutorial-image">
+                                <img src="https://picsum.photos/400/300?random=23" alt="剪辑节奏示意">
+                            </div>
+                            <div class="tutorial-image">
+                                <img src="https://picsum.photos/400/300?random=24" alt="音画同步示意">
+                        </div>
+                        <p>案例分析：</p>
+                        <p><strong>案例分析：《雪夜告白》的剪辑亮点</strong></p>
+                        <p>本短剧的剪辑节奏从慢到快，先用空镜头铺陈环境情绪，再通过人物对视剪辑加快节奏，强化紧张感。在高潮部分采用快速切镜+特写，突出情绪爆发。结尾的慢动作雪落镜头配合淡出的配乐，使情感延伸到观众心中，形成“沉默后的回响”。</p>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+<!-- 🎉 发布成功弹窗 -->
+    <div class="publish-modal" id="publishSuccessModal">
+            <div class="publish-modal-content">
+                <p class="modal-title">🎉 你的短剧已成功发布！</p>
+                <p class="modal-subtitle">想看看它现在在「看剧中心」长什么样？</p>
+                    <div class="modal-buttons">
+                        <button class="action-btn btn-preview" onclick="window.location.href='watch_center.html'">去看剧中心看看我的作品</button>
+                        <button class="action-btn btn-secondary" onclick="window.location.href='watch_center.html'">顺便看看别人都拍了啥</button>
+                    </div>
+                <span class="modal-close" onclick="closePublishModal()">&times;</span>
+            </div>
+    </div>
+
+<script>
+
+//选择滤镜风格    
+
+    function selectStyle(el) {
+        const options = document.querySelectorAll('.frame-style-option');
+        options.forEach(opt => opt.classList.remove('selected'));
+        el.classList.add('selected');
+    }
+
+// 定义教程函数
+    function openTutorial() {
+        document.getElementById("tutorialModal").classList.add("show");
+    }
+
+    function closeTutorial() {
+        document.getElementById("tutorialModal").classList.remove("show");
+    }
+
+// 定义教程函数    
+    function openPublishModal() {
+        const modal = document.getElementById("publishSuccessModal");
+        if (modal) {
+        modal.classList.add("show");
+        console.log("✅ 完结撒花弹窗显示");
+        } else {
+        console.warn("❌ 找不到 publishSuccessModal 元素");
+        }
+    }
+
+    function closePublishModal() {
+        const modal = document.getElementById("publishSuccessModal");
+        if (modal) {
+        modal.classList.remove("show");
+        }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+        const publishBtn = document.querySelector(".btn-publish");
+        if (publishBtn) {
+        publishBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            openPublishModal();
+        });
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const options = document.querySelectorAll('.frame-style-option');
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+            options.forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+            });
+        });
+    });
+
+
+
+
+</script>
+
+</body>
+</html>
